@@ -9,6 +9,7 @@ Here are examples of the three domains' distributions from one subject. And they
 <img width="448" alt="image" src="https://github.com/TengfeiFeng/ME-fMRI_TensorICA/assets/48821629/ea51ca8f-a127-45b9-9e7e-f19e96e6c639">
 
 
-Before decomposition,
-we realigned the echoes' images separately using the motion parameters estimated from the first echo (13ms).
+Before decomposition:
+We realigned the echoes' images separately using the motion parameters estimated from the first echo (13ms).
+
 We smoothed the data with a 4mm FWHM kernel.
