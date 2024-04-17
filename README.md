@@ -4,6 +4,8 @@ Here are the shared codes about how we decomposed ME-fMRI data using TensorICA.
 
 Then the codes in the '.py' were used to decompose the data based on the TensorICA implemented in MELODIC in the FSL toolbox. 
 Here are examples of the three domains' distributions from one subject. And they were divided into three groups based on the distribution across TEs.
+
+
 <img width="448" alt="image" src="https://github.com/TengfeiFeng/ME-fMRI_TensorICA/assets/48821629/ea51ca8f-a127-45b9-9e7e-f19e96e6c639">
 
 
