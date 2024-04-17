@@ -10,6 +10,7 @@ Here are examples of the three domains' distributions from one subject. And they
 
 
 Before decomposition:
+
 We realigned the echoes' images separately using the motion parameters estimated from the first echo (13ms).
 
 We smoothed the data with a 4mm FWHM kernel.
