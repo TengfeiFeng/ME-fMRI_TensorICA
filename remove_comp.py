@@ -74,8 +74,7 @@ def remove_comp(drive_loc1,current_folder,data_file,tica_type,reject_comp,acc_cm
         data = data.reshape((-1,)+data.shape[3:]).squeeze()[:,0:time_length]
         
         data_z = data[mask,:].T - data[mask,:].T.mean(axis=0)
-        # get mixing metrix for this echo's data for these components
-        # mmix = time_course[:,i+1:np.size(time_course,1):5]#np.dot(np.linalg.pinv(fsl_components[mask,:]),data_z.T).T#
+        # get mixing matrix for this echo's data for these components based on the spatial maps
         mmix = np.dot(np.linalg.pinv(fsl_components[mask,:]),data_z.T).T
         mdata = data[mask,:]
         dmdata = mdata.T - mdata.T.mean(axis=0)
