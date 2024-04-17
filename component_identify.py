@@ -20,15 +20,21 @@ def component_identify(out_dir,tica_type,keep_ratio):
     TE_file = out_dir+'/'+tica_type+'/melodic_Smodes'
     Time_course = np.loadtxt(out_dir+'/'+tica_type+'/melodic_Tmodes')[:,0:-1:5]
     TE_mode = np.loadtxt(TE_file)
-    reject_comp = [] # decreased pattern components
+    reject_comp = []
+    reject_comp1 = [] # decreased pattern components
     reject_comp2 = [] # low TE-peak components
     reject_comp3 = [] # with abnormal frequency bands
     second_level_comp = []
     acc_cmp = [] # accept comp
-    # 3. need to create functions for identifying works
+    
+    coeff = polyfit([13,28,43,57], TE_mode[:,second_level_comp], 2)
+    peaks = -coeff[1]/(2*coeff[0])
     for i in range(len(TE_mode.transpose())):
-        if max(TE_mode[:, i]) == TE_mode[0, i]:  # identify the exponential decay pattern noise, need change with exponential decay fit
+        if peaks[i] < 15 or peaks[i]>55:
             reject_comp.append(i)
+            reject_comp1.append(i)
+        # if max(TE_mode[:, i]) == TE_mode[0, i]:  # identify the exponential decay pattern noise, need change with exponential decay fit
+        #     reject_comp.append(i)
         else:
             second_level_comp.append(i)
     coeff = polyfit([13,28,43,57], TE_mode[:,second_level_comp], 2)
@@ -50,4 +56,4 @@ def component_identify(out_dir,tica_type,keep_ratio):
         else:
             reject_comp.append(second_level_comp[i])
             reject_comp2.append(second_level_comp[i])
-    return [reject_comp,acc_cmp,reject_comp2,reject_comp3]
+    return [reject_comp,acc_cmp,reject_comp1,reject_comp2,reject_comp3]
