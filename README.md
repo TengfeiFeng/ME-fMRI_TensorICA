@@ -2,7 +2,7 @@
 Characterizing the distribution of neural and non-neural components in multi-echo EPI data across echo times based on Tensor-ICA
 Here are the shared codes about how we decomposed ME-fMRI data using TensorICA. 
 
-Then the codes in the '.py' were used to decompose the data based on the TensorICA implemented in MELODIC in the FSL toolbox. 
+Then the codes in the 'run_tica.py' were used to decompose the data based on the TensorICA implemented in MELODIC in the FSL toolbox. 
 Here are examples of the three domains' distributions from one subject. And they were divided into three groups based on the distribution across TEs.
 
 
