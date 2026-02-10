@@ -8,11 +8,11 @@ refer to the regress methods implemented in tedana
 """
 
 import nibabel as nib       
-from nilearn._utils import check_niimg
+from nilearn.image import check_niimg
 import numpy as np
 from tedana import utils
 from tedana.stats import get_coeffs
-from nilearn._utils import check_niimg
+from nilearn.image import check_niimg
 from nilearn.image import new_img_like
 from scipy.stats import zscore
 def new_nii_like(ref_img, data, affine=None, copy_header=True):

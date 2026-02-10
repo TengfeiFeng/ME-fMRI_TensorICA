@@ -10,10 +10,10 @@ import numpy as np
 from tedana import io, stats, utils
 import os
 import nibabel as nib       
-from nilearn._utils import check_niimg
+from nilearn.image import check_niimg
 from nilearn.image import new_img_like
 
-def plot_comp(drive_loc,current_folder,tica_type,comp_type,tr,tes):
+def plot_comp(drive_loc,current_folder,tica_type,comp_type,tr,echo_times):
     components = nib.load(drive_loc+'/'+current_folder+'/tensor_ICA/'+tica_type+'/melodic_IC.nii.gz')#spatial maps
     components = check_niimg(components)
     (nx, ny, nz) = components.shape[:3]
@@ -100,7 +100,7 @@ def plot_comp(drive_loc,current_folder,tica_type,comp_type,tr,tes):
        
         # Plot it
         ax_te = plt.subplot2grid((6, 6), (4, 0), rowspan=1, colspan=6)
-        ax_te.plot(tes, TE_mode[:,compnum])
+        ax_te.plot(echo_times, TE_mode[:,compnum])
         ax_te.set_title("TE_distribution")
         ax_te.set_xlabel("TEs")
         ax_te.set_xlim(10, 60)

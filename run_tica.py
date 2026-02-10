@@ -42,6 +42,7 @@ for sub_name in subject_folders:
         
         # what kind of input
         tica_type = 'tica_s4r'
+        echo_times = [13,28,43,57]
         
         if not os.path.isdir(out_dir):
             os.mkdir(out_dir)
@@ -53,17 +54,17 @@ for sub_name in subject_folders:
         # # 2. load TE distribution to identify noise-related comp
         from component_identify import component_identify
         print('------classifying components------------')
-        [reject_comp,acc_cmp,reject_comp2,reject_comp3] = component_identify(out_dir, tica_type, 0.3)
+        [reject_comp,acc_cmp,reject_comp1,reject_comp2,reject_comp3] = component_identify(out_dir, tica_type, 0.3, echo_times)
         
         
         # 3. load components and plot components for visual inspection
         from plot_comp import plot_comp
-        print('------ploting components------------')
+        print('------plotting components------------')
         comp_type = np.zeros(len(reject_comp)+len(acc_cmp)).astype('int')
         comp_type[reject_comp] = 1# components' type: 1:reject component ,0 : accept components
         comp_type[reject_comp3] = 2
         np.savetxt(out_dir+tica_type+'/labels.txt',comp_type)# save the components labels
-        plot_comp(drive_loc, current_folder, tica_type,comp_type, 1,[13,28,43,57])
+        plot_comp(drive_loc, current_folder, tica_type,comp_type, 1, echo_times)
         
 
         # 4. remove the noise-related components
@@ -71,6 +72,5 @@ for sub_name in subject_folders:
         if not os.path.isdir(drive_loc+'/'+current_folder+'/denoised_data/'):
             os.mkdir(drive_loc+'/'+current_folder+'/denoised_data')
         print('------removing noise-related components------------')
-        remove_comp(drive_loc, current_folder, data_file,
-                    tica_type, reject_comp, acc_cmp)
+        remove_comp(drive_loc, current_folder, data_file, tica_type, reject_comp, acc_cmp)
         
